@@ -1,0 +1,31 @@
+package dataDriven;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.RichTextString;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Test1 {
+
+	public static void main(String[] args) throws EncryptedDocumentException, IOException {
+	WebDriver driver=new ChromeDriver();
+	
+	FileInputStream f=new FileInputStream("./amz.xlsx");
+	Workbook wb = WorkbookFactory.create(f);
+ String url = wb.getSheet("Sheet1").getRow(1).getCell(0).getStringCellValue();
+	
+	driver.get(url);
+	String product = wb.getSheet("Sheet1").getRow(1).getCell(1).getStringCellValue();
+	
+	driver.findElement(By.id("twotabsearchtextbox")).sendKeys(product);
+
+	}
+
+}
