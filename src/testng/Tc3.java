@@ -14,15 +14,15 @@ public class Tc3 {
 	public WebDriver driver;
 	@BeforeMethod
 	public void openApp() {
-		WebDriver driver=new ChromeDriver();
+	   driver=new ChromeDriver();
 		driver.get("https://www.facebook.com/");
-		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 	}
 	
 	@Test
 	public void creteaPage() {
 		driver.findElement(By.xpath("//a[text()='Create a Page']")).click();
-		driver.findElement(By.xpath("//div[text()='Get Started'")).click();
+		driver.findElement(By.xpath("//div[text()='Get Started']")).click();
 		Reporter.log(driver.getTitle(),true);
 		Reporter.log(driver.getCurrentUrl(),true);
 	}
